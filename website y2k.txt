@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y2K Dollskill Style</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Verdana", sans-serif;
+            background: url('https://cdn.pixabay.com/photo/2016/10/19/17/32/pink-1756694_1280.jpg'); /* Vervang met een geschikte Y2K-achtergrond */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            color: #ff00ff;
+            text-shadow: 2px 2px 10px #ff99cc;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        a {
+            font-size: 1.8rem;
+            color: white;
+            background: linear-gradient(135deg, #ff66ff, #ff33cc);
+            padding: 15px 30px;
+            border: none;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 30px;
+            box-shadow: 0 10px 20px rgba(255, 51, 204, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            background: linear-gradient(135deg, #ff33cc, #ff66ff);
+            transform: scale(1.1);
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 250px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff66ff, #ff33cc);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            text-align: center;
+            animation: glitter 2s infinite;
+            z-index: 10;
+        }
+
+        .popup h2 {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .popup p {
+            font-size: 1rem;
+            color: #ffe6f7;
+        }
+
+        @keyframes glitter {
+            0%, 100% {
+                box-shadow: 0 0 10px #ff99cc, 0 0 20px #ff66ff;
+            }
+            50% {
+                box-shadow: 0 0 20px #ff33cc, 0 0 40px #ff66ff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Y2K Vintage Shop</h1>
+        <p>Shop de meest iconische looks, rechtstreeks uit de jaren 2000!</p>
+        <a id="signup" href="#">Meld je aan</a>
+    </div>
+
+    <script>
+        const signupLink = document.getElementById('signup');
+
+        signupLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            generateChaos();
+        });
+
+        function generateChaos() {
+            for (let i = 0; i < 20; i++) {
+                createPopup(i * 200);
+            }
+        }
+
+        function createPopup(delay) {
+            setTimeout(() => {
+                const popup = document.createElement('div');
+                popup.classList.add('popup');
+                popup.innerHTML = `
+                    <h2>Oops! 😅</h2>
+                    <p>Je kunt deze pop-up niet sluiten!</p>
+                `;
+
+                document.body.appendChild(popup);
+
+                const size = Math.random() * 200 + 100;
+                const xPos = Math.random() * window.innerWidth - size;
+                const yPos = Math.random() * window.innerHeight - size;
+
+                popup.style.width = `${size}px`;
+                popup.style.height = `${size}px`;
+                popup.style.top = `${Math.max(0, yPos)}px`;
+                popup.style.left = `${Math.max(0, xPos)}px`;
+
+                popup.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, delay);
+        }
+    </script>
+</body>
+</html>
